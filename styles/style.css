@@ -38,6 +38,8 @@ body {
 	overflow: visible;
 	position: relative;
 	z-index: 2;
+	background: none; 
+	border: none;
 
 	
 	span,
@@ -276,9 +278,6 @@ span.word {
 	font-size: 1.2rem;
 }
 
-
-/* card */
-
 .works-section {
   background: linear-gradient(
     180deg,
@@ -456,5 +455,4 @@ textarea {
 	.form-group label {
 	text-align: center;
 }
-
 }
