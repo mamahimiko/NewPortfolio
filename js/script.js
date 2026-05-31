@@ -7,10 +7,15 @@ burgerMenu.addEventListener("click", function () {
 });
 
 const skillList = [
+  { language: "TypeScript", icon: "devicon-typescript-plain" },
+  { language: "JavaScript", icon: "devicon-javascript-plain" },
+  { language: "React", icon: "devicon-react-plain" },
+  { language: "Next.JS", icon: "devicon-nextjs-plain" },
+  { language: "Tailwind.css", icon: "devicon-tailwindcss-plain" },
+  { language: "Material UI", icon: "devicon-materialui-plain" },
+  { language: "JQuery", icon: "devicon-jquery-plain" },
   { language: "HTML", icon: "devicon-html5-plain" },
   { language: "CSS", icon: "devicon-css3-plain" },
-  { language: "JavaScript", icon: "devicon-javascript-plain" },
-  { language: "JQuery", icon: "devicon-jquery-plain" },
   { language: "Git", icon: "devicon-git-plain" },
   { language: "Github", icon: "devicon-github-original" },
   { language: "VS Code", icon: "devicon-vscode-plain" },
@@ -39,13 +44,10 @@ const callApi = async (param, type) => {
       throw new Error("Fail to fetch data");
     }
     const repos = await response.json();
-    repos.forEach(async (repo) => {
-      if (repo.private) {
-        return;
-      } else {
-        createCard(repo);
-      }
-    });
+    repos
+      .filter((repo) => !repo.private && !repo.fork)
+      .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+      .forEach((repo) => createCard(repo));
   } catch (error) {
     console.error("Error:", error);
   }
@@ -89,10 +91,11 @@ const createCard = (repo) => {
       <div class="work-card__content">
         <h3 class="work-card__title">${repo.name}</h3>
         <p class="work-card__text">Main Skill: ${repo.language}</p>
-		<p>
-			<a href="${repo.html_url}"><i class="fa-brands fa-github"></i>${webpage(
-    repo
-  )}</a></p>
+		    <p>
+		    	<a href="${repo.html_url}"><i class="fa-brands fa-github"></i>
+          ${webpage(repo)}
+          </a>
+        </p>
       </div>
     `;
 
