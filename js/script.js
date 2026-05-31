@@ -1,9 +1,20 @@
-const burgerMenu = document.querySelector(".burger-icon");
-const overlay = document.querySelector(".header-menu");
+const burgerIcon = document.querySelector(".burger-icon");
+const headerMenu = document.querySelector(".header-menu");
 
-burgerMenu.addEventListener("click", function () {
-  this.classList.toggle("close");
-  overlay.classList.toggle("overlay");
+burgerIcon.addEventListener("click", () => {
+  headerMenu.classList.toggle("overlay");
+  document.body.classList.toggle("menu-open");
+
+  const isExpanded = burgerIcon.getAttribute("aria-expanded") === "true";
+  burgerIcon.setAttribute("aria-expanded", !isExpanded);
+});
+
+document.querySelectorAll(".header-menu a").forEach((link) => {
+  link.addEventListener("click", () => {
+    headerMenu.classList.remove("overlay");
+    document.body.classList.remove("menu-open");
+    burgerIcon.setAttribute("aria-expanded", "false");
+  });
 });
 
 const skillList = [
