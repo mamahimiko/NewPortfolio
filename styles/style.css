@@ -29,6 +29,9 @@ body {
 	background-color: var(--color-secondary);
 	color: var(--color-tertiary);
 	font-weight: bold;
+	position: sticky;
+	top: 0;
+	z-index: 30;
 }
 
 .burger-icon {
