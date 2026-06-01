@@ -94,16 +94,19 @@ const createCard = (repo) => {
   console.log(repo);
 
   card.innerHTML = `
+  <a href="${repo.html_url}" >
       <div 
       class="work-card__image-container" 
       style="background-image:url('img/${repo.name}.png')">
       </div>
+  </a>
       
       <div class="work-card__content">
         <h3 class="work-card__title">${repo.name}</h3>
         <p class="work-card__text">Main Skill: ${repo.language}</p>
 		    <p>
-		    	<a href="${repo.html_url}"><i class="fa-brands fa-github"></i>
+		    	<a href="${repo.html_url}">
+          <i class="fa-brands fa-github"></i>
           ${webpage(repo)}
           </a>
         </p>
